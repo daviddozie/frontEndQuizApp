@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --background-color: #f6f6f6;
+  --foreground-color: #003cff;
+  --primary-text-color: #0a0a0a;
+  --secondary-text-color: #FFFFFF;
+  --toggle-bg: #28282c;
+  --toggle-fg: #048970;
+}
+
+[data-theme="dark"] {
+  --background-color: #0a0a0a;
+  --foreground-color: #567aff;
+  --primary-text-color: #f6f6f6;
+  --secondary-text-color: #0a0a0a;
+  --toggle-bg: #048970;
+  --toggle-fg: #28282c;
+  transition: ease-in-out 0.3s;
+}
+
+.toggle-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.toggle {
+  visibility: hidden;
+}
+
+.toggle + label {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  cursor: pointer;
+  color: var(--primary-text-color);
+}
+
+.toggle + label::before {
+  content: "";
+  height: 1em;
+  width: 2em;
+  border-radius: 1em;
+  background-color: var(--toggle-bg);
+  margin-right: 0.5em;
+  transition: background-color 250ms ease-in-out;
+}
+
+.toggle + label::after {
+  content: "";
+  height: 0.8em;
+  width: 0.8em;
+  border-radius: 1em;
+  background-color: var(--toggle-fg);
+  position: absolute;
+  left: 0.2em;
+  transition: background-color 250ms ease-in-out, transform 250ms ease-in-out;
+}
+
+.toggle:checked + label::after {
+  transform: translateX(100%);
+}
+
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: auto;
+  backdrop-filter: blur(2px);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.loading {
+  width: 60px !important;
+  height: 60px !important;
+}
+
+.home__btn {
+  transition: ease-in-out 0.3s;
+}
+
+.home__btn:hover {
+  color: #28282c;
+  background-color: #048970;
+  transform: translateX(20px);
+}
+
+.correct__option {
+  background-color: rgb(1, 92, 1) !important;
+  animation: glow1 200ms infinite;
+}
+
+@keyframes glow1 {
+  50% {
+    opacity: 70%;
+  }
+}
+
+.incorrect__option {
+  background-color: rgb(196, 0, 0) !important;
+  animation: glow2 200ms infinite;
+}
+
+@keyframes glow2 {
+  50% {
+    opacity: 70%;
+  }
+}
+
+.modal-content {
+  width: 80% !important;
+  height: auto !important;
+  background-color: var( --toggle-bg);
+  border-radius: 30px;
+}
+
+.circular-progress-bar-container {
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+.circular-progress-bar {
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
