@@ -1,7 +1,7 @@
 import Lottie from "lottie-react"
 import animationData from "../../assets/quizAnimation.json"
 import Button from "../../components/Button/Button"
-import { Toggle } from "./Toggle"
+import { Toggle } from "../../components/Toggle/Toggle"
 import useLocalStorage from "use-local-storage"
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"

@@ -30,8 +30,9 @@
 
 .toggle-container {
   position: absolute;
-  top: 0;
+  top: -23px;
   right: 0;
+
 }
 
 .toggle {
@@ -139,4 +140,34 @@
 .circular-progress-bar {
   transform: rotate(-90deg);
   transform-origin: 50% 50%;
+}
+
+::placeholder {
+  color: #28282c !important;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+input {
+  color: #28282c !important;
+  font-weight: 400 !important;
+  outline: none !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: #28282c !important;
+}
+
+.bg-countries {
+  background-color: #C4C4C4 !important;
+}
+
+.countryLabel {
+  color: #28282c !important;
+  font-size: 15px;
+  font-weight: 400;
 }
