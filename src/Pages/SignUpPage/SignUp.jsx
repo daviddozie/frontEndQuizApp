@@ -44,6 +44,15 @@ function SignUp() {
       }
     }
 
+    if (!isValid) {
+      newFormErrors.genericError = "Please make sure all fields are not empty.";
+    } else if (formData.password !== formData.comfirmPassword) {
+      newFormErrors.genericError = "Password don't match";
+      isValid = false;
+    } else {
+      newFormErrors.genericError = "";
+    }
+
     setFormErrors(newFormErrors);
     return isValid;
   };
@@ -176,7 +185,16 @@ function SignUp() {
                   </div>
                 </div>
                 <p className="text-white text-[12px] md:text-[16px]">
-                  Please make sure fields are not empty
+                  {/* {formErrors.genericError && (
+                    <p className="text-white text-[12px] md:text-[16px]">
+                      {formErrors.genericError}
+                    </p>
+                  )} */}
+                  {formErrors.genericError && (
+                    <p className="text-white text-[14px] font-[500] ">
+                      {formErrors.genericError}
+                    </p>
+                  )}
                 </p>
               </div>
               <HighlightOffOutlinedIcon
