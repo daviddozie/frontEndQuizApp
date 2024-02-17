@@ -13,7 +13,6 @@ function Input({
         className={inputClass}
         onChange={onChange}
         placeholder={placeholder}
-        onBlur={onBlur}
       />
     </div>
   );
