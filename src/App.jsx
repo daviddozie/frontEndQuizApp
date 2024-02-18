@@ -3,6 +3,8 @@ import LandingPage from "./Pages/LandingPage/LandingPage"
 import SignUp from "./Pages/SignUpPage/SignUp"
 import Quiz from "./Pages/Quiz/Quiz"
 import LogIn from "./Pages/LogIn/LogIn"
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword"
+import Verification from "./Pages/Verification/Verification"
 
 function App() {
 
@@ -14,6 +16,8 @@ function App() {
           <Route path='/signup' element={<SignUp />} />
           <Route path='/meun' element={<LandingPage />} />
           <Route path='/quiz' element={<Quiz />} />
+          <Route path='/forgotpassword' element={<ForgotPassword />} />
+          <Route path='/verification' element={<Verification />} />
         </Routes>
       </Router>
     </>

@@ -176,7 +176,7 @@ function SignUp() {
         </div>
         {Object.values(formErrors).some((error) => error) && (
           <div className="errorModal">
-            <div className="md:w-[60%] lg:w-[30%] w-[90%] h-[60px] rounded-[4px] bg-[red] flex items-center justify-between px-3 absolute md:left-[80px] md:top-[86%] left-4 top-4 errorModal-content">
+            <div className="md:w-[60%] lg:w-[30%] w-[90%] h-[60px] rounded-[4px] bg-[red] flex items-center justify-between md:px-3 px-1 absolute md:left-[80px] md:top-[86%] left-4 top-4 errorModal-content">
               <div className="flex items-center gap-1 md:gap-4">
                 <div>
                   <div className="border-[2px] border-[white] w-[20px] h-[20px] rounded-[50%] text-white flex justify-center items-center text-[12px] md:text-[16px] font-[600]">
@@ -185,7 +185,7 @@ function SignUp() {
                 </div>
                 <p className="text-white text-[10px] md:text-[16px]">
                   {formErrors.genericError && (
-                    <p className="text-white text-[14px] font-[500] ">
+                    <p className="text-white text-[12px] md:text-[14px] font-[500] ">
                       {formErrors.genericError}
                     </p>
                   )}

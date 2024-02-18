@@ -95,7 +95,7 @@ function Quiz() {
         setModalShow(false);
         setIsLoading(true);
         setTimeout(() => {
-            navigate('/')
+            navigate('/meun')
         }, 3000);
     }
 
