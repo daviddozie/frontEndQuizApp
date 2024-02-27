@@ -7,6 +7,8 @@ import Input from "../../components/Input/Input";
 import PasswordInput from "../../components/passwordInput/PasswordInput";
 import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
 import Button from "../../components/Button/Button";
+import { database } from "../../Firebase Auth/firebase.config";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 function LogIn() {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -38,6 +40,7 @@ function LogIn() {
 
     if (!isValid) {
       newFormErrors.genericError = "Please make sure all fields are not empty.";
+      const firebaseMessage = "Invalid credentials"
     } else {
       newFormErrors.genericError = "";
     }
@@ -53,12 +56,21 @@ function LogIn() {
 
     if (validateForm()) {
       resetErrors();
-      setIsLoading(true);
-      setTimeout(() => {
-        navigate("/meun");
-      }, 3000);
-    } else {
-    }
+
+      signInWithEmailAndPassword(database, formData.email, formData.password)
+      .then(authData => {
+        console.log(authData, "authData");
+        setIsLoading(true);
+        setTimeout(() => {
+          navigate("/meun");
+        }, 3000);
+      })
+      .catch(err => {
+        alert("Authentication Error:", err.code);
+        setIsLoading(false);
+      });
+    } 
+  
   };
 
   const resetErrors = () => {

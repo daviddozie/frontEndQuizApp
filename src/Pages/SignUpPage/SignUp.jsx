@@ -8,6 +8,9 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import HighlightOffOutlinedIcon from "@mui/icons-material/HighlightOffOutlined";
 import PasswordInput from "../../components/passwordInput/PasswordInput";
 import { useState } from "react";
+import { database } from "../../Firebase Auth/firebase.config";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { data } from "autoprefixer";
 
 function SignUp() {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -60,16 +63,26 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     if (validateForm()) {
       resetErrors();
-      setIsLoading(true);
-      setTimeout(() => {
-        navigate("/meun");
-      }, 3000);
-    } else {
+  
+      createUserWithEmailAndPassword(database, formData.email, formData.password)
+        .then(authData => {
+          console.log(authData, "authData");
+          setIsLoading(true);
+  
+          setTimeout(() => {
+            navigate("/meun");
+          }, 3000);
+        })
+        .catch(error => {
+          alert("Authentication Error:", error.message);
+          setIsLoading(false);
+        });
     }
   };
+  
 
   const resetErrors = () => {
     setFormErrors({
