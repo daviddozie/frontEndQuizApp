@@ -10,12 +10,13 @@ import PasswordInput from "../../components/passwordInput/PasswordInput";
 import { useState } from "react";
 import { database } from "../../Firebase Auth/firebase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { data } from "autoprefixer";
 
 function SignUp() {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [isDark, setIsDark] = useLocalStorage("isDark", preference);
   const navigate = useNavigate();
+  const [firebaseError, setFirebaseError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -59,32 +60,31 @@ function SignUp() {
     return isValid;
   };
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-  
+
     if (validateForm()) {
       resetErrors();
-  
+
       createUserWithEmailAndPassword(database, formData.email, formData.password)
         .then(authData => {
           console.log(authData, "authData");
           setIsLoading(true);
-  
+
           setTimeout(() => {
             navigate("/meun");
-          }, 3000);
+          }, 1500);
         })
-        .catch(error => {
-          alert("Authentication Error:", error.message);
+        .catch(() => {
+          setFirebaseError(true);
           setIsLoading(false);
         });
     }
   };
-  
+
 
   const resetErrors = () => {
+    setFirebaseError(false)
     setFormErrors({
       firstName: "",
       lastName: "",
@@ -215,6 +215,26 @@ function SignUp() {
       {isLoading && (
         <div className="load">
           <span className="loading loading-dots loading-lg bg-[#048970]"></span>
+        </div>
+      )}
+      {firebaseError && (
+        <div className="errorModel">
+          <div className="md:w-[60%] lg:w-[30%] w-[90%] h-[60px] rounded-[4px] bg-[red] flex items-center justify-between md:px-3 px-1 absolute md:left-[80px] md:top-[86%] left-4 top-4 errorModal-content">
+            <div className="flex items-center gap-1 md:gap-4">
+              <div>
+                <div className="border-[2px] border-[white] w-[20px] h-[20px] rounded-[50%] text-white flex justify-center items-center text-[12px] md:text-[16px] font-[600]">
+                  !
+                </div>
+              </div>
+              <p className="text-white text-[10px] md:text-[16px]">
+                Credentials in use
+              </p>
+            </div>
+            <HighlightOffOutlinedIcon
+              className="text-white cursor-pointer"
+              onClick={resetErrors}
+            />
+          </div>
         </div>
       )}
     </>

@@ -5,6 +5,7 @@ import Quiz from "./Pages/Quiz/Quiz"
 import LogIn from "./Pages/LogIn/LogIn"
 import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword"
 import Verification from "./Pages/Verification/Verification"
+import Error from "./Pages/404Page/Error"
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path='/quiz' element={<Quiz />} />
           <Route path='/forgotpassword' element={<ForgotPassword />} />
           <Route path='/verification' element={<Verification />} />
+          <Route path='*' element={<Error />} />
         </Routes>
       </Router>
     </>

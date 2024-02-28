@@ -14,6 +14,8 @@ function LogIn() {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
   const [isDark, setIsDark] = useLocalStorage("isDark", preference);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [firebaseError, setFirebaseError] = useState(false);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -49,8 +51,6 @@ function LogIn() {
     return isValid;
   };
 
-  const [isLoading, setIsLoading] = useState(false);
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -63,10 +63,10 @@ function LogIn() {
         setIsLoading(true);
         setTimeout(() => {
           navigate("/meun");
-        }, 3000);
+        }, 1500);
       })
       .catch(err => {
-        alert("Authentication Error:", err.code);
+        setFirebaseError(true);
         setIsLoading(false);
       });
     } 
@@ -74,6 +74,7 @@ function LogIn() {
   };
 
   const resetErrors = () => {
+    setFirebaseError(false);
     setFormErrors({
       email: "",
       password: "",
@@ -171,6 +172,26 @@ function LogIn() {
       {isLoading && (
         <div className="load">
           <span className="loading loading-dots loading-lg bg-[#048970]"></span>
+        </div>
+      )}
+      {firebaseError && (
+        <div className="errorModel">
+          <div className="md:w-[60%] lg:w-[30%] w-[90%] h-[60px] rounded-[4px] bg-[red] flex items-center justify-between md:px-3 px-1 absolute md:left-[80px] md:top-[86%] left-4 top-4 errorModal-content">
+            <div className="flex items-center gap-1 md:gap-4">
+              <div>
+                <div className="border-[2px] border-[white] w-[20px] h-[20px] rounded-[50%] text-white flex justify-center items-center text-[12px] md:text-[16px] font-[600]">
+                  !
+                </div>
+              </div>
+              <p className="text-white text-[10px] md:text-[16px]">
+                Invalid Credentials
+              </p>
+            </div>
+            <HighlightOffOutlinedIcon
+              className="text-white cursor-pointer"
+              onClick={resetErrors}
+            />
+          </div>
         </div>
       )}
     </>
