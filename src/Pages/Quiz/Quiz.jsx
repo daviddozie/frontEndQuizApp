@@ -74,7 +74,9 @@ function Quiz() {
 
             if (currentQuestion.answer === answer) {
                 selectedOptionClassList.add('correct__option');
-                setPoints(points + 5);
+                setTimeout(() => {
+                    setPoints(points + 5);
+                }, 1500);
             } else {
                 selectedOptionClassList.add('incorrect__option');
                 const correctOption = optionArr[currentQuestion.answer - 1];
@@ -96,7 +98,7 @@ function Quiz() {
         setIsLoading(true);
         setTimeout(() => {
             navigate('/meun')
-        }, 3000);
+        }, 1500);
     }
 
     const backToQuiz = () => {
@@ -122,12 +124,11 @@ function Quiz() {
             setIsLoading(false);
             setIndex(0);
             setPoints(0);
-        }, 3000);
+        }, 1500);
     };
 
     return (
         <>
-            <NavLink to="/quiz"></NavLink>
             <div data-theme={isDark ? "dark" : "light"} className="min-h-[100vh]">
                 <header className="w-[full] py-[20px]">
                     <div className="w-[90%] md:w-[80%] mx-auto flex items-center justify-between">

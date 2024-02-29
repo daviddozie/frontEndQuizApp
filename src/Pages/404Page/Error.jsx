@@ -20,7 +20,7 @@ function Error() {
           <Button
             label="Meun"
             type="submit"
-            styles="bg-[#28282c] text-[#048970] text-[15px] font-[500] rounded-[5px] py-[10px] shadow-2xl w-[100%] md:w-[50%] hover:md:w-[70%] transition-all ease-in-out duration-[0.5s]"
+            styles="bg-[#28282c] text-[#048970] text-[15px] font-[500] rounded-[5px] py-[10px] shadow-2xl w-[80%] md:w-[50%] hover:md:w-[70%] transition-all ease-in-out duration-[0.5s]"
           />
         </NavLink>
       </div>
