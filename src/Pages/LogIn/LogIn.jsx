@@ -124,7 +124,7 @@ function LogIn() {
                 }
               />
               <div className="flex justify-end pt-3">
-                <NavLink to="*">
+                <NavLink to="#">
                   <span className="text-[14px] font-[500] text-[#048970]">forgot password?</span>
                 </NavLink>
               </div>

@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
 import congratsAnimation from "../../assets/congratsAnimation.json"
 import Lottie from "lottie-react";
 import useLocalStorage from "use-local-storage";
 import Button from "../../components/Button/Button";
 import { data } from "../../assets/Data";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 function Quiz() {
 
@@ -21,7 +20,6 @@ function Quiz() {
     const navigate = useNavigate();
     const [progress, setProgress] = useState(0);
 
-    const totalQuestions = data.length;
     const questionsToShow = 20;
 
     useEffect(() => {
