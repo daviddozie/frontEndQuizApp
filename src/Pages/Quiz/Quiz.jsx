@@ -5,6 +5,7 @@ import useLocalStorage from "use-local-storage";
 import Button from "../../components/Button/Button";
 import { data } from "../../assets/Data";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../ContextAPI/UserContext";
 
 function Quiz() {
 
@@ -19,6 +20,8 @@ function Quiz() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
     const [progress, setProgress] = useState(0);
+    const { userName } = useUser();
+    console.log("User Rerieve:", userName);
 
     const questionsToShow = 20;
 
@@ -227,7 +230,8 @@ function Quiz() {
                         <div className="flex justify-center">
                             <Lottie animationData={congratsAnimation} className="congratsAnimation lg:w-[30%] lg:h-[20%] md:w-[60%]" />
                         </div>
-                        <p className="text-center text-white font-[700] text-[30px] lg:mt-[-70px] mb-[40px]">Your Total Score is {points} points.</p>
+                        <p className="text-center text-[goldenrod] font-[600] text-[25px] lg:mt-[-70px] pb-[20px]">🎉{userName} 🎉</p>
+                        <p className="text-center text-white font-[700] text-[30px] mb-[20px]">Your Total Score is {points} points.</p>
                         <div className="flex justify-center pb-[40px]">
                             <Button
                                 type="button"

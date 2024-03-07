@@ -10,6 +10,7 @@ import PasswordInput from "../../components/passwordInput/PasswordInput";
 import { useState } from "react";
 import { database } from "../../Firebase Auth/firebase.config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useUser } from "../../ContextAPI/UserContext";
 
 function SignUp() {
   const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -17,6 +18,7 @@ function SignUp() {
   const navigate = useNavigate();
   const [firebaseError, setFirebaseError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const { setUser } = useUser();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -62,6 +64,9 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setUser(formData.firstName);
+    console.log("User set:", formData.firstName);
 
     if (validateForm()) {
       resetErrors();
@@ -196,13 +201,13 @@ function SignUp() {
                     !
                   </div>
                 </div>
-                <p className="text-white text-[10px] md:text-[16px]">
+                <div className="text-white text-[10px] md:text-[16px]">
                   {formErrors.genericError && (
                     <p className="text-white text-[12px] md:text-[14px] font-[500] ">
                       {formErrors.genericError}
                     </p>
                   )}
-                </p>
+                </div>
               </div>
               <HighlightOffOutlinedIcon
                 className="text-white cursor-pointer"
