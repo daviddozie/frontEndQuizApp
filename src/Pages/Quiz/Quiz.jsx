@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import congratsAnimation from "../../assets/congratsAnimation.json"
 import Lottie from "lottie-react";
 import useLocalStorage from "use-local-storage";
@@ -21,7 +21,6 @@ function Quiz() {
     const navigate = useNavigate();
     const [progress, setProgress] = useState(0);
     const { userName } = useUser();
-    console.log("User Rerieve:", userName);
 
     const questionsToShow = 20;
 
@@ -118,7 +117,7 @@ function Quiz() {
         });
 
         setProgress(0)
-        
+
 
         setTimeout(() => {
             setIsLock(false);
@@ -127,6 +126,35 @@ function Quiz() {
             setPoints(0);
         }, 1500);
     };
+
+    const listOptions = useMemo(() => {
+        return questions.length > 0 && [
+            {
+                id: "1",
+                option: option1,
+                alpha: "A",
+                opt: questions[index].options.option1,
+            },
+            {
+                id: "2",
+                option: option2,
+                alpha: "B",
+                opt: questions[index].options.option2,
+            },
+            {
+                id: "3",
+                option: option3,
+                alpha: "C",
+                opt: questions[index].options.option3,
+            },
+            {
+                id: "4",
+                option: option4,
+                alpha: "D",
+                opt: questions[index].options.option4,
+            },
+        ];
+    }, [questions, index]);
 
     return (
         <>
@@ -174,33 +202,19 @@ function Quiz() {
                         <ul >
                             {questions.length > 0 && (
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <li ref={option1} onClick={(e) => (checkAnswer(e, "1"))} className={`flex gap-5 items-center bg-[#28282c] p-3 rounded-[8px] shadow-sm hover:translate-y-[-5px] transition ease-in-out duration-[0.5s] cursor-pointer`}>
-                                        <div className={`bg-[white] w-[50px] h-[50px] rounded-[8px] flex justify-center items-center`}>
-                                            <span className="text-black font-[800] text-[18px]  px-[20px]">A</span>
-                                        </div>
-                                        <span className={`text-[20px] font-[500] text-[#048970]`}>{questions[index].options.option1}</span>
-                                    </li>
-                                    <li ref={option2} onClick={(e) => (checkAnswer(e, "2"))} className={`flex gap-5 items-center bg-[#28282c] p-3 rounded-[8px] shadow-sm hover:translate-y-[-5px] transition ease-in-out duration-[0.5s] cursor-pointer`}>
-                                        <div className={`bg-[white] w-[50px] h-[50px] rounded-[8px] flex justify-center items-center`}>
-                                            <span className="text-black font-[800] text-[18px]  px-[20px]">B</span>
-                                        </div>
-                                        <span className={`text-[20px] font-[500] text-[#048970]`}>{questions[index].options.option2}</span>
-                                    </li>
-                                    <li ref={option3} onClick={(e) => (checkAnswer(e, "3"))} className={`flex gap-5 items-center bg-[#28282c] p-3 rounded-[8px] shadow-sm hover:translate-y-[-5px] transition ease-in-out duration-[0.5s] cursor-pointer`}>
-                                        <div className={`bg-[white] w-[50px] h-[50px] rounded-[8px] flex justify-center items-center`}>
-                                            <span className="text-black font-[800] text-[18px]  px-[20px]">C</span>
-                                        </div>
-                                        <span className={`text-[20px] font-[500] text-[#048970]`}>{questions[index].options.option3}</span>
-                                    </li>
-                                    <li ref={option4} onClick={(e) => (checkAnswer(e, "4"))} className={`flex gap-5 items-center bg-[#28282c] p-3 rounded-[8px] shadow-sm hover:translate-y-[-5px] transition ease-in-out duration-[0.5s] cursor-pointer`}>
-                                        <div className={`bg-[white] w-[50px] h-[50px] rounded-[8px] flex justify-center items-center`}>
-                                            <span className="text-black font-[800] text-[18px]  px-[20px]">D</span>
-                                        </div>
-                                        <span className={`text-[20px] font-[500] text-[#048970]`}>{questions[index].options.option4}</span>
-                                    </li>
+                                    {listOptions.map(listOption => {
+                                        return (
+                                            <li key={listOption.id} ref={listOption.option} onClick={(e) => (checkAnswer(e, listOption.id))} className={`flex gap-5 items-center bg-[#28282c] p-3 rounded-[8px] shadow-sm hover:translate-y-[-5px] transition ease-in-out duration-[0.5s] cursor-pointer`}>
+                                                <div className={`bg-[white] w-[50px] h-[50px] rounded-[8px] flex justify-center items-center`}>
+                                                    <span className="text-black font-[800] text-[18px]  px-[20px]">{listOption.alpha}</span>
+                                                </div>
+                                                <span className={`text-[20px] font-[500] text-[#048970]`}>{listOption.opt}
+                                                </span>
+                                            </li>
+                                        )
+                                    })}
                                 </div>
                             )}
-
                         </ul>
                     </div>
                     <div className="flex justify-between py-[40px]">
@@ -230,7 +244,7 @@ function Quiz() {
                         <div className="flex justify-center">
                             <Lottie animationData={congratsAnimation} className="congratsAnimation lg:w-[30%] lg:h-[20%] md:w-[60%]" />
                         </div>
-                        <p className="text-center text-[goldenrod] font-[600] text-[25px] lg:mt-[-70px] pb-[20px]">🎉{userName} 🎉</p>
+                        <p className="text-center text-[goldenrod] font-[600] text-[25px] lg:mt-[-70px] pb-[20px]">{userName}</p>
                         <p className="text-center text-white font-[700] text-[30px] mb-[20px]">Your Total Score is {points} points.</p>
                         <div className="flex justify-center pb-[40px]">
                             <Button
