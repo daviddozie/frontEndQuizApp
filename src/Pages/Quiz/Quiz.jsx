@@ -6,6 +6,7 @@ import Button from "../../components/Button/Button";
 import { data } from "../../assets/Data";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../ContextAPI/UserContext";
+import Timer from "../../components/Timer/Timer";
 
 function Quiz() {
 
@@ -164,6 +165,7 @@ function Quiz() {
                         <div>
                             <h1 className="text-[#048970] text-[30px] font-[600]">feQuiz</h1>
                         </div>
+                        <Timer />
                         <div className="circular-progress-bar-container">
                             <svg className="circular-progress-bar" viewBox="0 0 100 100">
                                 <circle cx="50" cy="50" r="40" stroke="#eee" strokeWidth="8" fill="none" />

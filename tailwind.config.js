@@ -14,9 +14,5 @@ const tailwindConfig = {
 };
 
 module.exports = withMT({
-  ...tailwindConfig, // Spread the properties of tailwindConfig
-  // Add or override any specific properties if needed
-  // content: [], // Example: Override the content property
-  // theme: { ... }, // Example: Override the theme property
-  // plugins: [], // Example: Override the plugins property
+  ...tailwindConfig,
 });
