@@ -1,8 +1,4 @@
-# React + Vite
+# feQuiz 
+is an exciting, interactive platform designed to test and sharpen your frontend development skills. Whether you're a seasoned coder or just starting out, feQuiz challenges you with a wide range of questions on essential frontend topics like HTML, CSS, JavaScript, and popular frameworks like React.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [feQuiz](https://front-end-quiz-app.vercel.app)
