@@ -25,7 +25,7 @@ function LandingPage() {
                 <header className="w-[full] py-[20px]">
                     <div className="w-[90%] md:w-[80%] mx-auto flex items-center justify-between py-5 rounded-[40px] relative">
                         <div>
-                            <h1 className="text-[#048970] text-[30px] font-[600]">feQuiz</h1>
+                            <h1 className="text-[#048970] text-[30px] font-[600]">DevSpack</h1>
                         </div>
                         <div>
                             <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
@@ -36,7 +36,7 @@ function LandingPage() {
                     <div className="flex justify-between lg:flex-row flex-col-reverse">
                         <div className="lg:mt-[60px] lg:ms-[0px]">
                             <h1 className="text-[#048970] font-[600] lg:text-[60px] text-[30px] text-center md:text-[40px] lg:text-start">Welcome to the</h1>
-                            <h1 className={`text-[${isDark}] font-[600] lg:text-[60px] text-[30px] text-center leading-6 pb-3 md:text-[40px] lg:text-start`}>Frontend Quiz</h1>
+                            <h1 className={`text-[${isDark}] font-[600] lg:text-[60px] text-[30px] text-center leading-6 pb-3 md:text-[40px] lg:text-start`}>DevSpack</h1>
                             <div>
                                 <p className={`text-[${isDark}] lg:pt-[40px] text-[14px] my-7 lg:text-start text-center md:text-[18px] font-[400] lg:max-w-[80%]`}>Unlock the secrets of frontend skill in our quick quiz! Test your HTML, CSS, JavaScript and React prowess, and level up your skills with each question.</p>
                             </div>

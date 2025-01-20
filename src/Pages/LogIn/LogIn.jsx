@@ -89,7 +89,7 @@ function LogIn() {
       >
         <div className="md:w-[80%] w-[90%] mx-auto md:min-h-[80vh] min-h-[100vh] pt-[50px] md:pt-[100px] lg:pt-[0px]">
           <div className="flex justify-between relative items-center">
-            <h1 className="text-[#048970] text-[30px] font-[600]">feQuiz</h1>
+            <h1 className="text-[#048970] text-[30px] font-[600]">DevSpack</h1>
             <div className="absolute right-0 top-[-20px]">
               <Toggle
                 isChecked={isDark}

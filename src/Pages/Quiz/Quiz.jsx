@@ -131,7 +131,7 @@ function Quiz() {
             <div data-theme={isDark ? "dark" : "light"} className="min-h-[100vh]">
                 <header className="w-[full] py-[20px]">
                     <div className="w-[90%] md:w-[80%] mx-auto flex items-center justify-between">
-                        <h1 className="text-[#048970] text-[30px] font-[600]">feQuiz</h1>
+                        <h1 className="text-[#048970] text-[30px] font-[600]">DevSpack</h1>
                         <div className="circular-progress-bar-container">
                             <svg className="circular-progress-bar" viewBox="0 0 100 100">
                                 <circle cx="50" cy="50" r="40" stroke="#eee" strokeWidth="8" fill="none" />
